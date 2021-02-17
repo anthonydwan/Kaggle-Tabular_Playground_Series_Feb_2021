@@ -40,7 +40,7 @@ Encoder                    |  Decoder                  | Autoencoder            
 ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/encoder.png)  |  ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/decoder.png) |  ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/DAE.png)
 
 
-Due to OOM issues that I currently do not know how to resolve, I shrinked the original DAE model by Danzel from 1500 * 3 deepstack layers into a hybrid bottleneck into 500 * 3 deepstack layers. 
+Due to OOM issues that I currently do not know how to resolve, I shrank the original DAE model by Danzel from 1500 * 3 deepstack layers into a hybrid bottleneck into 500 * 3 deepstack layers. 
 
 
 
