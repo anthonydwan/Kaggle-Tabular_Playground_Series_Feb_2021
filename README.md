@@ -1,12 +1,20 @@
 # Kaggle-Tabular_Playground_Series_Feb_2021
 The goal is to predict a continuous target based on a number of feature columns given in the data. All of the feature columns, cat0 - cat9 are categorical, and the feature columns cont0 - cont13 are continuous. The dataset is used for this competition is synthetic, but based on a real dataset and generated using a CTGAN. The original dataset deals with predicting the amount of an insurance claim. Although the features are anonymized, they have properties relating to real-world features.
 
+A lot of the techniques used are drawn from what I have used and learnt from the [Tabular Playground Series - January Competition](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Jan_2021).
+
 ## EDA
+Note: since github cannot handle interactive plots, please go to [Tabular Playground Feb EDA.ipynb](https://nbviewer.jupyter.org/github/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/Tabular%20Playground%20Feb%20EDA.ipynb).
+
 #### 1. Adversarial validation 
-It is confirmed that the training data has identical distribution as and very representative of testing data.
+<img src="https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/Adversarial%20validation.png" width="600" />
+
+The trained model did not extract any information to distinguish train vs test data for both the training and holdout dataset - i.e. It is confirmed that the training data has identical distribution as and very representative of testing data.
 
 #### 2. Exploratory data analysis 
 Similar to Tabular Playground 1, the data is very clean but anonymised. This competition's data also contains categorical variables. Based on January's top performers, data engineering was mostly futile (except the use of DAE as feature engineering/selection implemented below) and that is probably the case for this competition as well.
+
+[Basic EDA](https://htmlpreview.github.io/?https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/Pandas%20Profiling%20EDA.html#interactions).
 
 ## Submission 1: Kaggle Tuned LGBM + XGB
 Borrowed from kaggle public notebooks [Ensemble Starter](https://www.kaggle.com/tunguz/ensembling-starter-tps-feb-2021), a high-performance baseline ensemble of two tuned LGBM models + XGB model. PB score @ 8.4218
