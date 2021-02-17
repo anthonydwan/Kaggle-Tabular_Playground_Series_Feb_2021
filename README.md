@@ -14,7 +14,7 @@ The trained model did not extract any information to distinguish train vs test d
 #### 2. Exploratory data analysis 
 Similar to Tabular Playground 1, the data is very clean but anonymised. This competition's data also contains categorical variables. Based on January's top performers, data engineering was mostly futile (except the use of DAE as feature engineering/selection implemented below) and that is probably the case for this competition as well.
 
-[Basic EDA](https://htmlpreview.github.io/?https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/Pandas%20Profiling%20EDA.html#interactions).
+[See Pandas Profiling EDA](https://htmlpreview.github.io/?https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/Pandas%20Profiling%20EDA.html#interactions)
 
 ## Submission 1: Kaggle Tuned LGBM + XGB
 Borrowed from kaggle public notebooks [Ensemble Starter](https://www.kaggle.com/tunguz/ensembling-starter-tps-feb-2021), a high-performance baseline ensemble of two tuned LGBM models + XGB model. PB score @ 8.4218
