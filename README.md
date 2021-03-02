@@ -30,11 +30,12 @@ After numerous attempts to tune using 10CV-averaged LGBM, the parameters seem to
 ## Attempt 3: Deepstack/Hybrid Denoising Autoencoder (DAE) + Multilayer Perceptron (ANN):
 I wanted to implement   Tabular Playground Series January Competition's [1st place - turn your data into DAEta](https://www.kaggle.com/springmanndaniel/1st-place-turn-your-data-into-daeta/comments). The data distribution is very similar to January's data, except there are now 10 categorical varaibles. This should be noted since transforming categorical data may make it too sparse for DAE.   Since the original solution is in R and also did not provide code, I have the chance to work out the code from scratch using Python!
 
-**Current model architecture:**<br>
-Deepstack Autoencoder:
+**model architecture:**<br>
+Original architecture - Deepstack Autoencoder:
 Input --> Encode Layer 1 (1500 Dense Relu) --> Encode Layer 2 (1500 Dense Relu) --> Deepstack 1 (500 Dense Relu) --> Deepstack 2 (500 Dense Relu) --> Deepstack 3 (500 Dense Relu) --> Decode Layer 1 (1500 Dense Relu) --> Decode Layer 2 (1500 Dense Relu)--> output
 
 
+Visual representation of final DAE architecture
 Encoder                    |  Decoder                  | Autoencoder               |
 :-------------------------:|:-------------------------:|:-------------------------:|
 ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/encoder.png)  |  ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/decoder.png) |  ![](https://github.com/anthonydwan/Kaggle-Tabular_Playground_Series_Feb_2021/blob/main/DAE.png)
@@ -47,9 +48,16 @@ The three deepstack layers are fed as input into the MLP model. I am using optun
 I was unable to crack 0.88 with my DAE --> NN architecture. I have tried various size of DAE (smallest at around 64/64/32) and it was difficult to tell if it was working or not since the MSE for the DAE remained at around 0.076 regardless on the amount of noise or the complexity of the DAE architecture. When the DAE model was too complex, it seemed that the decoder was able to predict even when the encoder creates meaningless output (all 0 or same value). 
 
 ## Attempt 4 Bottleneck Denosing Autoencoder + LGBM:
-To see whether it was the problem of ANN, I tried making a bottleneck DAE where the encode output layer is fed to a tuned LGBM model. There is only slight performance improvement to 0.87 RMSE. With such poor performance, I suspect that the inclusion of categorical features in the Feb dataset may have made it incredibly difficult to use DAE since the transformed data are generally more sparse. 
+To see whether it was the problem of ANN, I tried making a bottleneck DAE where the encode output layer is fed to a tuned LGBM model. There is only slight performance improvement to 0.87 RMSE. With such poor performance, I suspect that the inclusion of categorical features in the Feb dataset may have made it incredibly difficult to use DAE since the transformed data are generally more sparse. This did not drop below the 0.87.
 
 
+## Attempt 5: GBDT Ensemble with incremental overfit improvement 
+Credits to Siavash from Kaggle (@siavrez) for testing out this idea. Taking the tuned parameters from public discussion for the popular GBDT models - XGB, LGBM, Catboost and using average ensemble. The key idea is that for each of the models,  after one training cycle, the model is retrained with the same weights but with lower regularizations to try to further fit to the training data. This is done 10 times within 1 CV fold. While this theoretically should overfit to the training data, the results showed sufficient improvement over the regularized versions. 
 
+# Post-competition: Refining DAE architecture 
+Once again, the [winning solution](https://www.kaggle.com/c/tabular-playground-series-feb-2021/discussion/222745) involves a DAE architecture which is not surprising since the data is created synthetically with noise using CTGAN. 
+
+## Attempt 6: Implementing DAE - from the basics 
+Before attempting to construct the DAE created by Ren (@ryanzhang on Kaggle) which involved using transformers, I am going to perform DAE which can at least perform conparably to the GBDT models. 
 
 
