@@ -1,0 +1,1 @@
+{'bagging_freq': 1, 'reg_alpha': 2.4766410381355457, 'reg_lambda': 2.644144282261626, 'colsample_bytree': 0.3, 'subsample': 0.6, 'learning_rate': 0.008, 'max_depth': 20, 'num_leaves': 139, 'min_child_samples': 176, 'min_data_per_groups': 9}
